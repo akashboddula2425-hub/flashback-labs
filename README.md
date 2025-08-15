@@ -1,1 +1,4 @@
 # flashback-labs
+ FlashbackAuth – OTP Login + Liveness Check + Selfie Upload 📌 Overview FlashbackAuth is a React Native mobile application that implements a secure login process using OTP verification, on-device liveness detection, and selfie upload to a backend API.
+
+🚀 Features OTP Authentication Send OTP via WhatsApp using backend API. Verify OTP with proper error handling. Liveness Detection Uses front camera only. Runs fully on-device (no paid SDKs). Selfie Capture & Upload Captures selfie after liveness check passes. Uploads to backend with JWT authentication. User-Friendly Responsive UI for all screen sizes. Clear instructions and error messages. 🛠 Tech Stack React Native CLI – Mobile app framework React Navigation – Screen navigation Axios – API calls React Native Camera / Expo Camera – Camera access FormData – File uploads
