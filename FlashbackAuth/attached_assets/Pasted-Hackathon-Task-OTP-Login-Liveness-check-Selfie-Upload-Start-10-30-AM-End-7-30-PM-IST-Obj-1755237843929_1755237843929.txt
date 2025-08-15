@@ -1,0 +1,130 @@
+Hackathon Task – OTP Login + Liveness check + Selfie Upload
+Start: 10:30 AM End: 7:30 PM IST
+
+Objective
+Build a mobile application that allows a user to:
+
+Enter their mobile number and request an OTP.
+
+Verify the OTP.
+
+Perform an on-device liveness check with the front camera before capturing a selfie.
+
+Upload the selfie to the backend.
+
+Push final code to a public repository with documentation.
+
+API Details
+Send OTP  (OTP will be sent via Whatsapp)
+
+POST https://flashback.inc:9000/api/mobile/sendOTP
+Headers:
+  Content-Type: application/json
+  Cookie: refreshToken=<provided>
+Body:
+{
+  "phoneNumber": "+91XXXXXXXXXX"
+}
+Verify OTP
+
+POST https://flashback.inc:9000/api/mobile/verifyOTP
+Headers:
+  Content-Type: application/json
+  Cookie: refreshToken=<provided>
+Body:
+{
+  "phoneNumber": "+91XXXXXXXXXX",
+  "otp": "<6 digits>",
+  "login_platform": "MobileApp"
+}
+Upload Selfie
+
+POST https://flashback.inc:9000/api/mobile/uploadUserPortrait
+Headers:
+  Authorization: Bearer <JWT from verify>
+  Cookie: refreshToken=<provided>
+multipart/form-data:
+  image = <captured selfie file>
+  username = "<E.164 format phone>"
+Functional Requirements
+1. Phone & OTP Flow
+
+Input field for phone number in E.164 format (+91XXXXXXXXXX).
+
+“Send OTP” button calls Send OTP API.
+
+Show status (success, errors like invalid phone, rate-limit).
+
+OTP input screen with:
+
+6-digit OTP entry.
+
+Verify button calls Verify OTP API.
+
+Handle errors like invalid or expired OTP.
+
+2. Liveness Check Before Capture
+
+Uses front camera.
+
+No gallery import allowed.
+
+All liveness logic runs locally (no backend calls for detection).
+
+If liveness fails, the selfie is not captured.
+
+3. Selfie Capture & Upload
+
+Only after passing liveness:
+
+Capture selfie image.
+
+Upload to Upload Selfie API
+
+4. Error Handling & Feedback
+
+User-friendly error messages for:
+
+API failures.
+
+Camera/liveness failures.
+
+Invalid inputs.
+
+Clear instructions for liveness steps.
+
+5. Finally Navigate to home page with welcome message, user number and uploaded selfie
+
+Non-Functional Requirements
+No paid or proprietary SDKs.
+
+Code must follow general best practices:
+
+No hardcoded secrets or tokens.
+
+Clear separation of UI, business logic, and API calls.
+
+Proper error handling and validations.
+
+Proper comments in the code
+
+Proper transitions between the screens
+
+UI compatible with all screen resolutions
+
+Deliverables
+Public Git repository with:
+
+Full source code.
+
+README.md with:
+
+Setup & run instructions.
+
+App architecture overview.
+
+Description of liveness logic implemented.
+
+A 60–90 second screen recording showing full flow (phone entry → OTP → liveness → upload → server response).
+
+APK build for testing.
